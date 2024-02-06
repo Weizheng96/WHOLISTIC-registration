@@ -1,0 +1,49 @@
+clear;clc;
+addpath(genpath("/work/Wei/Projects/WholeFishAnalyss/src"));
+%% set parameters
+filePath="/work/public/Virginia Rutten/" + ...
+    "230119_f389_ubi_gcamp_bact_mcherry_8849_7dpf/exp0/imag/" + ...
+    "230119_f389_ubi_gcamp_bact_mcherry_8849_7dpf002.nd2";
+
+anaFilePath="/work/public/Virginia Rutten/" + ...
+    "230119_f389_ubi_gcamp_bact_mcherry_8849_7dpf/exp0/anat/" + ...
+    "230119_f389_ubi_gcamp_bact_mcherry_8849_7dpf001.nd2";
+
+resPathName="/work/Wei/Projects/WholeFishAnalyss/dat/230119_f389/230119_f389-230216-v20d2_jump20_penalty1_highFreq50_maskInt100";
+
+option.larer=3;
+option.iter=10;
+option.r=5;
+smoothPenalty=1;
+refLength=5;
+refJump =2;
+initialLength=5;
+smFactor=50;
+maskThres=100;
+%%
+if ~exist(resPathName,"dir")
+    mkdir(resPathName);
+end
+%% first registration
+
+reader = bfGetReader(convertStringsToChars(anaFilePath));
+[~,~,Z_ref,~,~,option.zRatio_Ref]=readMeta(reader);
+dat_ref=readOneFrame_double(reader,1,2);
+
+reader = bfGetReader(convertStringsToChars(filePath));
+[X,Y,Z,T,~,option.zRatio]=readMeta(reader);
+
+
+t=1;
+dat_mov_Raw=readOneFrame_double(reader,t,2);
+
+resizeRatio=option.zRatio/option.zRatio_Ref;
+
+zPadUp=ceil((Z_ref-Z*resizeRatio)/2);
+zPadBot=Z_ref-Z*resizeRatio-zPadUp;
+dat_mov = imresize3(dat_mov_Raw,[X Y Z*resizeRatio]);
+dat_mov = padarray(dat_mov,[0 0 zPadUp],'replicate','pre');
+dat_mov = padarray(dat_mov,[0 0 zPadBot],'replicate','post');
+mask_movPad=false()
+
+

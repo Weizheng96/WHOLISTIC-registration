@@ -1,0 +1,1 @@
+ motion_current=getMotion_Wei_v24d1(dat_mov_norm,dat_ref_norm,smoothPenalty,option);

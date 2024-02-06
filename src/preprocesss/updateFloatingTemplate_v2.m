@@ -1,0 +1,7 @@
+function dat_ref_float=updateFloatingTemplate_v2(dat_ref_float,dat_ref_fixed,thresFactor,optionTemplate,smoothPenaltyTemplate)
+
+optionTemplate.mask_mov=getMask(dat_ref_float,thresFactor);
+motion_current=getMotionHZR_Wei_v2d2(dat_ref_float,dat_ref_fixed,smoothPenaltyTemplate,optionTemplate);
+dat_ref_float=correctMotion_Wei_v2(dat_ref_float,motion_current);
+
+end

@@ -1,0 +1,112 @@
+clear;clc;
+addpath(genpath("/work/Wei/Projects/WholeFishAnalyss/src"));
+%% set parameters
+filePath="/work/public/Virginia Rutten/221124_f338_ubi_gCaMP7f_bactin_mCherry_CAAX_8505_7dpf_hypoxia/exp0/imag/" + ...
+    "221124_f338_ubi_gCaMP7f_bactin_mCherry_CAAX_7dpf002.nd2";
+
+resPathName="/ssd1/Wei/221124_f338/221124_f338-230326-FWv2_r5p1R12P10_noInitial_501To1000";
+
+%%
+option.layer=3;
+option.iter=20;
+option.r=5;
+smoothPenalty=1;
+
+optionTemplate.layer=3;
+optionTemplate.iter=20;
+optionTemplate.r=12;
+smoothPenaltyTemplate=10;
+
+refLength=5;
+refJump =40;
+initialLength=5;
+thresFactor=5;
+%%
+if ~exist(resPathName,"dir")
+    mkdir(resPathName);
+end
+%% first registration
+reader = bfGetReader(convertStringsToChars(filePath));
+[X,Y,Z,T,~,option.zRatio]=readMeta(reader);
+optionTemplate.zRatio=option.zRatio;
+
+% option.zRatio=100;
+
+% tRange=1:T;
+tRange=551:850;
+
+dat_corrected1=zeros([X,Y,Z,1,length(tRange)],"uint16");
+dat_corrected2=dat_corrected1;
+dat_raw1=dat_corrected1;
+dat_raw2=dat_corrected1;
+motion_history=zeros([round(X/2^option.layer),round(Y/2^option.layer),Z,3,initialLength],"single");
+
+option.motion=[];
+dat_ref_fixed=readOneFrame_single(reader,1,2);
+dat_ref_float=dat_ref_fixed;
+optionTemplate.mask_ref=getMask(dat_ref_fixed,thresFactor);
+option.mask_ref=getMask(dat_ref_float,thresFactor);
+
+for tCnt=1:length(tRange)
+    tic;
+    t=tRange(tCnt);
+    disp(t+"/"+T);
+    % read data
+    disp("read data (1)...");
+    dat_raw2(:,:,:,1,tCnt)=readOneFrame(reader,t,2);
+    option.mask_mov=getMask(dat_raw2(:,:,:,tCnt),thresFactor);
+    toc;
+    % get reference image
+    disp("generate reference...");
+    if tCnt>refLength*refJump && mod(tCnt,refJump)==1
+        refRange=(tCnt-refLength*refJump):refJump:(tCnt-1);
+        dat_ref_float=single(median(dat_corrected2(:,:,:,1,refRange),5));
+        dat_ref_float=updateFloatingTemplate(dat_ref_float,dat_ref_fixed,...
+            thresFactor,optionTemplate,smoothPenaltyTemplate);
+        option.mask_ref=getMask(dat_ref_float,thresFactor);
+    end
+    toc;
+    % motion correction
+    disp("correct motion...");
+    [motion_current,~,x_new,y_new,z_new]=getMotionHZR_Wei_v1(dat_raw2(:,:,:,1,tCnt),dat_ref_float,smoothPenalty,option);
+    dat_raw1(:,:,:,1,tCnt)=readOneFrame(reader,t,1);
+    dat_corrected1(:,:,:,1,tCnt)=correctMotion_Wei_v3(dat_raw1(:,:,:,1,tCnt),x_new,y_new,z_new);
+    dat_corrected2(:,:,:,1,tCnt)=correctMotion_Wei_v3(dat_raw2(:,:,:,1,tCnt),x_new,y_new,z_new);
+    toc;
+    % motion correction
+%     disp("initialize motion...");
+%     [motion_history,BestMotion]=updateMotionHistory_v2(motion_current,motion_history);
+%     option.motion=BestMotion;
+%     toc;
+    % save motion
+%     disp("save motion...");
+%     save(resPathName+"/motion_first_"+t+".mat","motion_current");
+%     toc;
+end
+
+%%
+% disp("save result (2)...");
+% cd(resPathName);
+% out1=reshape(dat_corrected1,X,Y,Z,1,length(tRange));
+% bfsave(out1, 'Corrected_Ch1.ome.tiff');
+%% save the first result
+tic;
+disp("save result (1)...");
+cd(resPathName);
+out1=cat(2,dat_raw1,dat_corrected1);
+out2=cat(2,dat_raw1,dat_corrected2);
+toc
+tic
+out=cat(4,out1,out2);
+toc
+
+tic
+out=zeros(X,2*Y,Z,2,length(tRange),"uint16");
+out(:,1:Y,:,1,:)=dat_raw1;
+out(:,1:Y,:,2,:)=dat_raw2;
+out(:,Y+1:2*Y,:,1,:)=dat_corrected1;
+out(:,Y+1:2*Y,:,2,:)=dat_corrected2;
+toc
+
+bfsave(out, 'Original_Corrected.ome.tiff');
+toc
