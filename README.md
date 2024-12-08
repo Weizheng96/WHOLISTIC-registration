@@ -54,4 +54,6 @@ See the function [```demo.m```](https://github.com/Weizheng96/WholeFishAnalyss/b
 
 
 ## Requirement
-Matlab 2023a is required
+- Matlab 2023a or later
+- Matlab Image Processing Toolbox
+- Matlab Parallel Computing Toolbox
