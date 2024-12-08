@@ -57,3 +57,6 @@ See the function [```demo.m```](https://github.com/Weizheng96/WholeFishAnalyss/b
 - Matlab 2023a or later
 - Matlab Image Processing Toolbox
 - Matlab Parallel Computing Toolbox
+
+## Citation
+To be announced.
