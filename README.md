@@ -38,7 +38,7 @@ https://github.com/user-attachments/assets/5fb45eca-02a1-4226-8208-2f6dbd6171a3
 ## Suitable Data for WBI Registration
 WBI Registration assumes that the template image and the moving image have similar intensities (or change gradually). Thus, At least one channel of your data should avoid fast-changing activities, such as Calcium activity signals, to ensure optimal results.
 
-## Code details
+## Using the Code
 See the function [```demo.m```](https://github.com/Weizheng96/WholeFishAnalyss/blob/main/demo.m) for an example of the code. The algorithm is implemented in the function ```getMotionHZR_Wei_v2d2.m```. GPU is preferred.
 
 | Parameter name | Description |
@@ -53,7 +53,7 @@ See the function [```demo.m```](https://github.com/Weizheng96/WholeFishAnalyss/b
 | ```option.mask_mov``` | mask of the moving image, set the pixel to true to ignore the pixel |
 
 
-## Requirement
+## Requirements
 - Matlab 2023a or later
 - Matlab Image Processing Toolbox
 - Matlab Parallel Computing Toolbox
