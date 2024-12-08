@@ -7,9 +7,9 @@ WBI Registration is a cutting-edge method designed to correct non-rigid motion c
 
 Below are examples showcasing the results of WBI Registration:
 
--**Left: Raw video**
+-**Left**: Raw video
 
--**Right: Motion-corrected video**
+-**Right**: Motion-corrected video
 
 <p align="center">
   <b>
@@ -59,4 +59,4 @@ See the function [```demo.m```](https://github.com/Weizheng96/WholeFishAnalyss/b
 - Matlab Parallel Computing Toolbox
 
 ## Citation
-To be announced.
+Details will be announced soon.
