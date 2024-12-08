@@ -52,7 +52,7 @@ See [```demo.m```](https://github.com/Weizheng96/WholeFishAnalyss/blob/main/demo
 | ```option.mask_ref``` | Mask for the template image. Pixels set to ```true``` are ignored during registration. |
 | ```option.mask_mov``` | Mask for the moving image. Pixels set to ```true``` are ignored during registration. |
 
-Practical usage examples for WBI data are available in ['''examples directory'''](https://github.com/Weizheng96/WBI-registration/tree/main/examples).
+Practical usage examples for WBI data are available in [```examples directory```](https://github.com/Weizheng96/WBI-registration/tree/main/examples).
 
 ## Requirements
 - Matlab 2023a or later
