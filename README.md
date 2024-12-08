@@ -43,14 +43,14 @@ See [```demo.m```](https://github.com/Weizheng96/WholeFishAnalyss/blob/main/demo
 
 | Parameter name | Description |
 |----------------|-------------|
-| ```dat_ref``` | template image |
-| ```dat_mov``` | moving image |
-| ```smoothPenalty``` | motion field smoothness penalty, large smooth penalty give smooth motion field |
-| ```option.layer``` | number of downsampled pyramid layers, the downsampled layer can avoid local optimal |
-| ```option.iter``` | max number of iteration of each layer |
-| ```option.r``` | control patch size (large patch size gives more rigid but more reliable results) |
-| ```option.mask_ref``` | mask of the template image, set the pixel to true to ignore the pixel |
-| ```option.mask_mov``` | mask of the moving image, set the pixel to true to ignore the pixel |
+| ```dat_ref``` | Template image. |
+| ```dat_mov``` | Moving image. |
+| ```smoothPenalty``` | Smoothness penalty for the motion field. Higher values produce smoother motion fields. |
+| ```option.layer``` | Number of downsampled pyramid layers. More layers help avoid local optima. |
+| ```option.iter``` | Maximum number of iterations per layer. |
+| ```option.r``` | 	Patch size control. Larger patch sizes yield more rigid but reliable results. |
+| ```option.mask_ref``` | Mask for the template image. Pixels set to '''true''' are ignored during registration. |
+| ```option.mask_mov``` | Mask for the moving image. Pixels set to '''true''' are ignored during registration. |
 
 Practical usage examples for WBI data are available in ['''examples directory'''](https://github.com/Weizheng96/WBI-registration/tree/main/examples).
 
