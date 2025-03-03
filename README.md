@@ -1,5 +1,5 @@
-# Welcome to WBI registration
-**A fast, accurate, and non-rigid image registration method for Whole-Body cellular activity Imaging (WBI).**
+# Welcome to WHOLISTIC-registration
+**A fast, accurate, and non-rigid image registration method for Whole-Body cellular activity Imaging.**
 
 ## Introduction
 WBI Registration is a cutting-edge method designed to correct non-rigid motion caused by skeletal and smooth muscle contractions. This enables precise cellular activity analysis and motion analysis for fluorescent data. The method utilizes patch-wise iterative modified optical flow with an image pyramid to achieve high flexibility and robustness.
