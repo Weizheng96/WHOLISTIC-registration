@@ -38,9 +38,27 @@ https://github.com/user-attachments/assets/5fb45eca-02a1-4226-8208-2f6dbd6171a3
 ## Suitable Data for WBI Registration
 WBI Registration assumes that the template image and the moving image have similar intensities (or change gradually). Thus, At least one channel of your data should avoid fast-changing activities, such as Calcium activity signals, to ensure optimal results.
 
-## Using the Code
-See [```demo.m```](https://github.com/Weizheng96/WholeFishAnalyss/blob/main/demo.m) for a demonstration of how to use the code. The algorithm is implemented in the function ```getMotionHZR_Wei_v2d2.m```. GPU acceleration is recommended for optimal performance.
+## Requirements
+### OS Requirements
+This package is supported for *Linux* and *Windows*. The package has been tested on the following systems:
++ Linux: Ubuntu 24.04
++ Windows: 22H2
 
+### Software Requirements
+- Matlab 2023a or later
+- Matlab Image Processing Toolbox
+- Matlab Parallel Computing Toolbox
+
+### Hardware Requirements
+A GPU with enough memory is recommended for acceleration.
+
+## How to use
+### Install and use Demo
+See [```demo.m```](https://github.com/Weizheng96/WholeFishAnalyss/blob/main/demo.m) for a demonstration of how to use the code. 
+Installing Matlab and downloading the provided data (f338). Change the 
+
+
+The algorithm is implemented in the function ```getMotionHZR_Wei_v2d2.m```. 
 | Parameter name | Description |
 |----------------|-------------|
 | ```dat_ref``` | Template image. |
@@ -52,12 +70,10 @@ See [```demo.m```](https://github.com/Weizheng96/WholeFishAnalyss/blob/main/demo
 | ```option.mask_ref``` | Mask for the template image. Pixels set to ```true``` are ignored during registration. |
 | ```option.mask_mov``` | Mask for the moving image. Pixels set to ```true``` are ignored during registration. |
 
+### WHOLISTIC Real data example
 Practical usage examples for WBI data are available in [```examples directory```](https://github.com/Weizheng96/WBI-registration/tree/main/examples).
 
-## Requirements
-- Matlab 2023a or later
-- Matlab Image Processing Toolbox
-- Matlab Parallel Computing Toolbox
+
 
 ## Citation
 Details will be announced soon.
