@@ -5,7 +5,7 @@ addpath(genpath("./src"));
 
 %% set parameters
 % data path used for registration
-filePath="./data/demo_data.mat";
+dataPath="./data/";
 
 % number of downsampled pyramid layers.
 option.layer=3;
@@ -26,7 +26,8 @@ thresFactor=5; % set thresFactor=inf if all pixel should be considered
 maskRange=[5 500]; % set maskRange=[0 inf] if all pixel should be considered
 
 %% load template image and moving imagre
-load(filePath,"dat_ref","dat_mov","zRatio");
+load(dataPath+"dat_ref.mat","dat_ref","zRatio");
+load(dataPath+"dat_mov.mat","dat_mov");
 dat_ref=single(dat_ref);
 dat_mov=single(dat_mov);
 %% [optional] get unreliable region mask for moving immuning cells
