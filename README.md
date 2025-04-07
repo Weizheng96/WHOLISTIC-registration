@@ -7,9 +7,9 @@ WBI Registration is a cutting-edge method designed to correct non-rigid motion c
 
 Below are examples showcasing the results of WBI Registration:
 
--**Left**: Raw video
+-**Input (Left)**: Raw video
 
--**Right**: Motion-corrected video
+-**Output (Right)**: Motion-corrected video
 
 <p align="center">
   <b>
