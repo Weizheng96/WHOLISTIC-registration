@@ -80,7 +80,7 @@ The main algorithm is implemented in the function ```getMotionHZR_Wei_v2d2.m```.
 To run WHOLISTIC-registration on our data and reproduce the results, check the code in [```examples directory```](https://github.com/Weizheng96/WBI-registration/tree/main/examples). The additional parameters for preprocessing are shown below.
 | Parameter name | Description |
 |----------------|-------------|
-| ```frameJump``` | Set to '''1''' to process all frames, or set to the expected interval of frames to be processed. . |
+| ```frameJump``` | Set to ```1``` to process all frames, or set to the expected interval of frames to be processed. . |
 | ```refLength``` | Number of frames used to generate floating template.|
 | ```refJump``` | Skip frames when selecting frames for floating template.|
 | ```initialLength``` | Number of frames used to initialize motion field.|
