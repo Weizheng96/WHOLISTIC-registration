@@ -1,7 +1,6 @@
 # Welcome to WHOLISTIC-registration
 **A fast, accurate, and non-rigid image registration method for Whole-Body cellular activity Imaging.**
 
----
 
 ## Introduction
 WBI Registration is a cutting-edge method designed to correct non-rigid motion caused by skeletal and smooth muscle contractions. This enables precise cellular activity analysis and motion analysis for fluorescent data. The method utilizes patch-wise iterative modified optical flow with an image pyramid to achieve high flexibility and robustness.
@@ -52,7 +51,7 @@ This package is supported for *Linux* and *Windows*. The package has been tested
 ### Hardware Requirements
 - A discrete GPU with sufficient memory is recommended for acceleration.
 
-## Installation and Using code
+## Installation and Demo
 
 ### Installation Instructions
 Install required MATLAB and clone the repository. It takes approximately 20 minutes on a standard system.
@@ -65,7 +64,7 @@ This demo registers a frame with 1708×2304×13 pixel to the template, and its o
 
 ### Key parameters
    
-The main algorithm is implemented in the function ```getMotionHZR_Wei_v2d2.m```. The parameters in shown as below.
+The main algorithm is implemented in the function ```getMotionHZR_Wei_v2d2.m```. The parameters is shown below.
 | Parameter name | Description |
 |----------------|-------------|
 | ```dat_ref``` | Template image. |
@@ -77,10 +76,16 @@ The main algorithm is implemented in the function ```getMotionHZR_Wei_v2d2.m```.
 | ```option.mask_ref``` | Mask for the template image. Pixels set to ```true``` are ignored during registration. |
 | ```option.mask_mov``` | Mask for the moving image. Pixels set to ```true``` are ignored during registration. |
 
-### WHOLISTIC Reproduction instructions
-Practical usage examples for WHOLISTIC are available in [```examples directory```](https://github.com/Weizheng96/WBI-registration/tree/main/examples).
+## Usage instructions and Result reproduction 
+To run WHOLISTIC-registration on our data and reproduce the results, check the code in [```examples directory```](https://github.com/Weizheng96/WBI-registration/tree/main/examples). The additional parameters for preprocessing are shown below.
+| Parameter name | Description |
+|----------------|-------------|
+| ```frameJump``` | Set to '''1''' to process all frames, or set to the expected interval of frames to be processed. . |
+| ```refLength``` | Number of frames used to generate floating template.|
+| ```refJump``` | Skip frames when selecting frames for floating template.|
+| ```initialLength``` | Number of frames used to initialize motion field.|
+| ```maskRange``` | Moving immune cell size range, bright connected components within the size will be masked out.|
 
----
 
 ## Citation
 Details will be announced soon.
