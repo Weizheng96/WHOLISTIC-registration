@@ -84,7 +84,7 @@ To run WHOLISTIC-registration on our data and reproduce the results, check the c
 | ```refLength``` | Number of frames used to generate floating template.|
 | ```refJump``` | Interval of frames used to generate floating template.|
 | ```initialLength``` | Number of frames used to initialize motion field.|
-| ```maskRange``` | Moving immune cell size range, bright connected components within the size will be masked out.|
+| ```maskRange``` | Moving immune cell size range. Bright connected components within the size will be masked out.|
 
 
 ## Citation
