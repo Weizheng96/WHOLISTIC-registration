@@ -59,11 +59,9 @@ Install required MATLAB and clone the repository. It takes approximately 20 minu
    
 ### Demo
 
-See [```demo.m```](https://github.com/Weizheng96/WholeFishAnalyss/blob/main/demo.m) for a demonstration of how to use the code.
+See [```demo.m```](https://github.com/Weizheng96/WholeFishAnalyss/blob/main/demo.m) for a demonstration of how to use the code. Change the ```dataPath``` in ```demo.m``` to the saved [```data folder```](https://github.com/Weizheng96/WHOLISTIC-registration/tree/main/data) and click "Run".
 
-Download the data file ```221124_f338_ubi_gCaMP7f_bactin_mCherry_CAAX_7dpf002.nd2``` to your machine and change the ```filePath``` in ```demo.m``` to the saved file.
-
-This demo registers a frame with 1708×2304×13 pixel to the template, and provided the motion field and visulization of motion corrected frames. For a computer with NVIDIA RTX A4000, with the default parameters, it takes 12.8 sec to finish the registration.
+This demo registers a frame with 1708×2304×13 pixel to the template, and its output includes the estimated motion field and visulization of motion corrected frames. For a computer with NVIDIA RTX A4000, with the default parameters, it takes 12.8 sec to finish the registration.
 
 ### Key parameters
    
@@ -79,10 +77,10 @@ The main algorithm is implemented in the function ```getMotionHZR_Wei_v2d2.m```.
 | ```option.mask_ref``` | Mask for the template image. Pixels set to ```true``` are ignored during registration. |
 | ```option.mask_mov``` | Mask for the moving image. Pixels set to ```true``` are ignored during registration. |
 
-### WHOLISTIC Real data example
-Practical usage examples for WBI data are available in [```examples directory```](https://github.com/Weizheng96/WBI-registration/tree/main/examples).
+### WHOLISTIC Reproduction instructions
+Practical usage examples for WHOLISTIC are available in [```examples directory```](https://github.com/Weizheng96/WBI-registration/tree/main/examples).
 
-
+---
 
 ## Citation
 Details will be announced soon.
